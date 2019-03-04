@@ -1,4 +1,4 @@
-//def pipelineContext = [:]
+def pipelineContext = [:]
 pipeline {
     agent any
     environment {
@@ -14,7 +14,16 @@ pipeline {
             steps {
                 echo 'Starting to build docker image'
                 script {
-                    customImage = docker.build("${env.DOCKER_CREDENTIALS_USR}/my-image:${env.BUILD_ID}")
+                    dockerImage = docker.build("${env.DOCKER_CREDENTIALS_USR}/my-image:${env.BUILD_ID}")
+                    pipelineContext.dockerImage = dockerImage 
+                }
+            }
+        }
+        stage('Run') {
+            steps {
+                echo "Run docker image"
+                script {
+                    pipelineContext.dockerContainer = pipelineContext.dockerImage.run()
                 }
             }
         }
