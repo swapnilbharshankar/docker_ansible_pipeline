@@ -31,7 +31,7 @@ pipeline {
             parallel {
                 stage('Verify home') {
                     steps {
-                        sh "ps -ax"
+                        sh "docker exec -it my-image:${env.BUILD_ID} /bin/bash -c "ps -ax""
                     }
                 }
             }
