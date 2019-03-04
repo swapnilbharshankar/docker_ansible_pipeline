@@ -27,5 +27,16 @@ pipeline {
                 }
             }
         }
+        stage('Verify') {
+            parallel {
+                stage('Verify home') {
+                    agent any {
+                        steps {
+                            sh "curl localhost"
+                        }
+                    }
+                }
+            }
+        }
     }
 }
