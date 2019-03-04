@@ -31,7 +31,7 @@ pipeline {
             parallel {
                 stage('Verify home') {
                     steps {
-                        sh "curl localhost"
+                        sh "ps -ax"
                     }
                 }
             }
