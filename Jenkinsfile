@@ -10,12 +10,12 @@ pipeline {
                 checkout scm
             }
         }
-    }
-    stage ('Build Docker image') {
-        steps {
-            echo 'Starting to build docker image'
-            script {
-                customImage = docker.build("${env.DOCKER_CREDENTIALS_USR}/my-image:${env.BUILD_ID}")
+        stage ('Build Docker image') {
+            steps {
+                echo 'Starting to build docker image'
+                script {
+                    customImage = docker.build("${env.DOCKER_CREDENTIALS_USR}/my-image:${env.BUILD_ID}")
+                }
             }
         }
     }
