@@ -1,4 +1,4 @@
-def pipelineContext = [:]
+//def pipelineContext = [:]
 pipeline {
     agent any
     stages {
