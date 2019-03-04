@@ -30,10 +30,8 @@ pipeline {
         stage('Verify') {
             parallel {
                 stage('Verify home') {
-                    agent any {
-                        steps {
-                            sh "curl localhost"
-                        }
+                    steps {
+                        sh "curl localhost"
                     }
                 }
             }
