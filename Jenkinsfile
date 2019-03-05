@@ -42,7 +42,7 @@ pipeline {
                 stage('Verify home') {
                     steps {
                         echo "demo"
-                        docker_id = sh (
+                        def docker_id = sh (
                             script: 'docker images',
                             returnStdout: true
                         )
