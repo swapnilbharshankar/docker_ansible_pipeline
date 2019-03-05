@@ -42,12 +42,12 @@ pipeline {
                 stage('Verify home') {
                     steps {
                         echo "demo"
-                        def docker_id = sh (
+                        docker_id = sh (
                             script: 'docker images',
                             returnStdout: true
                         )
-                        echo ${docker_id}
-//                        sh "docker exec -it my-image:${env.BUILD_ID} /bin/bash -c "ps -ax""
+                        println docker_id
+                        //                        sh "docker exec -it my-image:${env.BUILD_ID} /bin/bash -c "ps -ax""
                     }
                 }
             }
