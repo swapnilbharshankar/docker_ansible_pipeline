@@ -12,5 +12,5 @@ function checkIt()
  fi;
 }
 
-checkIt "httpd" > test_result.txt;
+checkIt "apache" > test_result.txt;
 checkIt "mysql" >> test_result.txt;

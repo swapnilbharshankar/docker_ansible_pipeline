@@ -14,8 +14,14 @@ pipeline {
             steps {
                 echo 'Starting to build docker image'
                 script {
-                    dockerImage = docker.build("${env.DOCKER_CREDENTIALS_USR}/my-image:${env.BUILD_ID}")
-                    pipelineContext.dockerImage = dockerImage 
+//                    dockerImage = docker.build("${env.DOCKER_CREDENTIALS_USR}/my-image:${env.BUILD_ID}")
+//                    pipelineContext.dockerImage = dockerImage 
+                    try {
+                        sh '''#!/bin/bash
+                        docker build -t httpd:1 -f Dockerfile .
+
+                        '''
+                    }
                 }
             }
         }
@@ -31,7 +37,13 @@ pipeline {
             parallel {
                 stage('Verify home') {
                     steps {
-                        sh "docker exec -it my-image:${env.BUILD_ID} /bin/bash -c "ps -ax""
+                        echo "demo"
+                        docker_id = sh (
+                            script: 'docker images'
+                            returnStdout: true
+                        )
+                        echo ${docker_id}
+//                        sh "docker exec -it my-image:${env.BUILD_ID} /bin/bash -c "ps -ax""
                     }
                 }
             }
