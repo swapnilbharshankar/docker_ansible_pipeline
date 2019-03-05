@@ -39,7 +39,7 @@ pipeline {
                     steps {
                         echo "demo"
                         docker_id = sh (
-                            script: 'docker images'
+                            script: 'docker images',
                             returnStdout: true
                         )
                         echo ${docker_id}
