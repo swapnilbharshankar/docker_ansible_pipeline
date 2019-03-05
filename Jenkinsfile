@@ -22,6 +22,10 @@ pipeline {
 
                         '''
                     }
+                    catch (exc) {
+                        echo "Something failed..."
+                        throw exc
+                    }
                 }
             }
         }
